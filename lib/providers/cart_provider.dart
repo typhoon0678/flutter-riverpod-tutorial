@@ -1,7 +1,10 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_files/models/product.dart';
 
-class CartNotifier extends Notifier<Set<Product>> {
+part 'cart_provider.g.dart';
+
+@riverpod
+class CartNotifier extends _$CartNotifier {
   // initial value
   @override
   Set<Product> build() {
@@ -26,5 +29,6 @@ class CartNotifier extends Notifier<Set<Product>> {
   }
 }
 
-final cartNotifierProvider =
-    NotifierProvider<CartNotifier, Set<Product>>(() => CartNotifier());
+// 직접 작성한 provider
+// final cartNotifierProvider =
+//     NotifierProvider<CartNotifier, Set<Product>>(() => CartNotifier());
