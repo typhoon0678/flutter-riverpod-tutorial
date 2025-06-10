@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_files/models/product.dart';
 
@@ -27,6 +28,12 @@ class CartNotifier extends _$CartNotifier {
   void removeProduct(Product product) {
     state = state.where((p) => p.id != product.id).toSet();
   }
+}
+
+@riverpod
+int cartTotal(Ref ref) {
+  final cartProducts = ref.watch(cartNotifierProvider);
+  return cartProducts.fold(0, (sum, product) => sum + product.price);
 }
 
 // 직접 작성한 provider
